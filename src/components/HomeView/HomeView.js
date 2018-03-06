@@ -19,9 +19,8 @@ class HomeView extends Component {
                 </div>
                 <div className='featuredContainer'>
                     <div className='featuredHead'>
-                        Featured Items
+                        Featured Items 
                     </div>
-                    <hr/>
                     <div className='featuredCards'>
                     <ItemCard imgURL={brownShirt} itemName='Silk Button-Up'/>
                     <ItemCard imgURL={jorts} itemName="90's Cutoffs"/>

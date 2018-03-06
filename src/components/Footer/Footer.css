@@ -3,9 +3,10 @@
     width: 100%;
     position: fixed;
     bottom: 0px;
+    padding-right: 30px;
     display: flex;
+    align-items: center;
     justify-content: flex-end;
-    margin-top: 200px;
     color: white;
     background-color: #414141
 
