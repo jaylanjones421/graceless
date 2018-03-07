@@ -6,10 +6,9 @@ class Footer extends Component {
     render() {
         return (
             <div className='footerContainer'>
-                <div><FaFacebook size={30} /></div>
-                <div><FaInstagram size={30}/></div>
-                <div><FaTwitter size={30}/></div>
-                
+                <div className='socialContainer'><FaFacebook size={30} className='social'/></div>
+                <div className='socialContainer'><FaInstagram size={30} className='social'/></div>
+                <div className='socialContainer'><FaTwitter size={30} className='social'/></div>               
             </div>
         );
     }

@@ -9,5 +9,10 @@
     justify-content: flex-end;
     color: white;
     background-color: #414141
-
+}
+.social{
+    margin-right: 20px;
+}
+.socialContainer :hover{
+    color:rgba(255, 255, 255, 0.7);
 }

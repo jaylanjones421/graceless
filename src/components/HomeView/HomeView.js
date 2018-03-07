@@ -14,7 +14,7 @@ class HomeView extends Component {
         return (
             <div className='homeContainer'>
                 <div className='heroImg'>
-                    <div className='heroMain'>graceless.</div>
+                    <div className='heroMain'>graceless</div>
                     <div className='heroSub'>vintage goods</div>
                 </div>
                 <div className='featuredContainer'>

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Cart extends Component {
+class AboutView extends Component {
     render() {
         return (
             <div>
-                CARRRRT
+                IM THE ABOUT PAGE
             </div>
         );
     }
 }
 
-export default Cart;
+export default AboutView;
