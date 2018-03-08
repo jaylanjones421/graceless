@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import './ItemCard.css'
 
 class ItemCard extends Component {
@@ -12,18 +13,16 @@ class ItemCard extends Component {
         }
         console.log(this.props.imgURL)
         return (
-            <div style={style} className='itemContainer'>
+            <Link to='/item/:id'><div style={style} className='itemContainer'>
                  <div className="hoverContent">
                  <div className='hoverOverlay'>
                     <div className='itemName'>
                         {this.props.itemName}
-                    </div>
-                    <div className="itemLink">
-                        <a href={this.props.path}>See More</a>
+                 
                     </div>
                     </div>
                 </div>
-            </div>
+            </div></Link>
         );
     }
 }

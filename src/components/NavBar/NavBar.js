@@ -7,7 +7,7 @@ class NavBar extends Component {
     render() {
         return (
             <div className='navBarContainer'>
-                <div className='logo'>graceless</div>
+                <Link to='/'><div className='logo'>graceless</div></Link>
                 <div className='navButtons'>
                    <Link to='/'> <div className='navButton'>home</div></Link>
                    <Link to='/shop'> <div className='navButton'>shop</div></Link>
