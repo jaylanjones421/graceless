@@ -1,13 +1,15 @@
 .shopContainer{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between
 }
 .lazyDiv{
     height: 75px;
 }
 .filterContainer{
     width: 100vw;
-    padding-right: 20px;
+    padding: auto;
     display: flex;
     justify-content: flex-end
 }
@@ -21,4 +23,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
+}
+.shopItems div{
+    margin: 30px;
 }
