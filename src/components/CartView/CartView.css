@@ -1,0 +1,23 @@
+.cartContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.top{
+    width: 75vw;
+    display: flex;
+    justify-content: center;
+
+}
+.cartDetails{
+    width: 50%;
+}
+.cartOverview{
+    width: 50%;
+    height: 500px;
+    background-color: rgba(0, 0, 0, 0.1)
+}
+.thanks{
+    width: 70vw;
+    display: flex;
+}

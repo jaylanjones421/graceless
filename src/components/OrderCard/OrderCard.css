@@ -1,0 +1,9 @@
+.orderCardContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:10px;
+}
+.removeFromCart{
+    border: 1px solid grey;
+}

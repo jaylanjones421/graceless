@@ -13,7 +13,7 @@ class ShopView extends Component {
         return (
             <div className='shopContainer'>
                 <div className='lazyDiv' description='i make it so that the navbar/footer doesnt cover anything'></div>
-                <div>SHOP</div>
+                <h2>Shop</h2>
                 <div className='filterContainer'> 
                     <select className='filterbb' name="filterSearch" id="">
                         <option value="">Filter</option>
