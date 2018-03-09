@@ -1,8 +1,11 @@
-import { createStore } from 'redux';
-import reducer from './ducks/reducer';
+import { createStore, combineReducers } from 'redux';
+import user from './ducks/user';
+import cart from './ducks/cart';
+import inventory from './ducks/inventory';
+
 
 const store = createStore(
-    reducer,
+    combineReducers({user,cart,inventory}),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
 

@@ -13,7 +13,7 @@ class NavBar extends Component {
                    <Link to='/shop'> <div className='navButton'>shop</div></Link>
                    <Link to='/about'> <div className='navButton'>about</div></Link>
                    <Link to='/cart'> <div className='navButton'>cart</div></Link>
-                   <Link to='/auth'> <div className='navButton'>login</div></Link>
+                   <a href="http://localhost:3000/login"> <div className='navButton'>login</div></a>
                 </div>
             </div>
         );

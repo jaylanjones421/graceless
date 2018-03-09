@@ -11,7 +11,6 @@ class ItemCard extends Component {
             height: '450px',
             width: '300px',
         }
-        console.log(this.props.imgURL)
         return (
             <Link to='/item/:id'><div style={style} className='itemContainer'>
                  <div className="hoverContent">
