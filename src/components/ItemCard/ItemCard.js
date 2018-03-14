@@ -3,16 +3,22 @@ import {Link} from 'react-router-dom';
 import './ItemCard.css'
 
 class ItemCard extends Component {
+    constructor(props){
+        super(props);
+    }
     render() {
         const style = {
-            background:  `url(${this.props.imgURL})`,
+            background:  `url(${this.props.imgUrl})`,
             backgroundSize: "cover",
             backgroundPosition:'center',
             height: '450px',
             width: '300px',
         }
+        console.log(this.props.imgUrl)
         return (
-            <Link to='/item/:id'><div style={style} className='itemContainer'>
+            <Link to={`/item/${this.props.id}`}>
+             <div className='itemContainer' style={{backgroundImage: `url("${this.props.imgUrl}")`, height: 450, width: 300}}
+             className='itemContainer'> 
                  <div className="hoverContent">
                  <div className='hoverOverlay'>
                     <div className='itemName'>
@@ -20,8 +26,10 @@ class ItemCard extends Component {
                  
                     </div>
                     </div>
-                </div>
-            </div></Link>
+                 </div> 
+            </div>
+            </Link>
+            
         );
     }
 }

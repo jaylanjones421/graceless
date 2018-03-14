@@ -1,12 +1,12 @@
-import { createStore, combineReducers } from 'redux';
-import user from './ducks/user';
-import cart from './ducks/cart';
-import inventory from './ducks/inventory';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import promiseMiddleware from 'redux-promise-middleware';
+
+import indexReducer from './ducks/indexReducer';
+
 
 
 const store = createStore(
-    combineReducers({user,cart,inventory}),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    indexReducer,applyMiddleware(promiseMiddleware())
   );
 
 export default store;
