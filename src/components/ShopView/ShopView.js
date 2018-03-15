@@ -2,18 +2,11 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import { NavLink } from 'react-router-dom'
 
 import './ShopView.css';
-import { setInventory } from "../../ducks/inventory";
-
+import { setInventory, setViewItem } from "../../ducks/inventory";
 import ItemCard from '../ItemCard/ItemCard';
-import brownShirt from '../../assets/ao-275953-unsplash.jpg';
-import sweater from '../../assets/beth-solano-321063-unsplash.jpg';
-import denimJ from '../../assets/toa-heftiba-547030-unsplash.jpg';
-import jeans from '../../assets/jamakassi-364678-unsplash.jpg';
-import jorts from '../../assets/brooke-cagle-274630-unsplash.jpg';
-import blackCoat from '../../assets/paige-muller-352783-unsplash.jpg';
+
 
 class ShopView extends Component {
     constructor(props){
@@ -22,8 +15,9 @@ class ShopView extends Component {
     //componentDidMount to set inventory
    componentDidMount(){
         axios.get('/api/inventory').then(res=>{
-            console.log(res.data)
-            this.props.setInventory(res.data)
+            console.log(res.data);
+            this.props.setInventory(res.data);
+            this.props.setFeatured(res.data);
         }).catch(console.log)
     }
     render() {
@@ -37,7 +31,7 @@ class ShopView extends Component {
     description */
 console.log(this.props)
         let shopItems = this.props.inventory.inventory.map((item,i)=>(
-             <div key={i}><ItemCard  itemName={item.itemName} type={item.type} price={item.price} size={item.size} imgUrl={item.imgUrl} id={item.id} /></div>
+             <div key={i}><ItemCard  itemName={item.itemName} type={item.type} price={item.price} size={item.size} imgUrl={item.imgUrl} id={item.id} description={item.description} /></div>
         ));
         return (
             <div className='shopContainer'>
@@ -66,4 +60,4 @@ console.log(this.props)
 const mapStateToProps = state => state;
 
 
-export default withRouter(connect(mapStateToProps, { setInventory })(ShopView));
+export default withRouter(connect(mapStateToProps, { setInventory, setViewItem })(ShopView));

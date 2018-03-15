@@ -7,7 +7,7 @@ const massive = require('massive');
 const strategy = require(`${__dirname}/strategy.js`);
 
 const {connectionString}=require(`${__dirname}/config.js`)
-const ic = require("./controllers/inventoryContr/inventoryContr");
+const ic = require("./controllers/inventoryController/inventoryController");
 
 
 const app = express();

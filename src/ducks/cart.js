@@ -11,10 +11,13 @@ const UPDATE_TOTAL='UPDATE_TOTAL';
 
 //action creators
 export function addToCart(item){
+    alert(`you have added to ${item.itemName} the cart`);
+    let newCart=initialState.cart.slice()
+    newCart.push(item);
     return{
         type:ADD_TO_CART,
-        payload:item
-    }
+        payload:newCart
+    }     
 }
 export function deleteFromCart(itemID){
     return{
@@ -35,7 +38,7 @@ export default function cart(state=initialState,action){
     switch(type){
         case ADD_TO_CART:
             return Object.assign({},state,{
-                cart:[...state.cart,payload]
+                cart:payload
             });
         case DELETE_FROM_CART:
             return Object.assign({},state,{

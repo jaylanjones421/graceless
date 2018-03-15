@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
+import {setFeatured} from '../../ducks/inventory'
 import './HomeView.css';
 import ItemCard from '../ItemCard/ItemCard'
-import brownShirt from '../../assets/ao-275953-unsplash.jpg';
-import jeans from '../../assets/jamakassi-364678-unsplash.jpg';
-import jorts from '../../assets/brooke-cagle-274630-unsplash.jpg';
+
 
 class HomeView extends Component {
+       componentDidMount(){
+        axios.get('/api/inventory').then(res=>{
+            console.log(res.data);
+            this.props.setFeatured(res.data);
+        }).catch(console.log)
+    }
     render() {
+        console.log(this.props)
+        let featuredItems = this.props.inventory.featured.map((item,i)=>(
+            <div key={i}><ItemCard  itemName={item.itemName} type={item.type} price={item.price} size={item.size} imgUrl={item.imgUrl} id={item.id} description={item.description} /></div>
+       ));
         return (
             <div className='homeContainer'>
                 <div className='heroImg'>
@@ -18,9 +30,7 @@ class HomeView extends Component {
                         Featured Items 
                     </div>
                     <div className='featuredCards'>
-                    <ItemCard imgURL={brownShirt} itemName='Silk Button-Up'/>
-                    <ItemCard imgURL={jorts} itemName="90's Cutoffs"/>
-                    <ItemCard imgURL={jeans} itemName="Distressed Jeans"/>
+                    {featuredItems}
                     </div>
 
                 </div>
@@ -30,4 +40,7 @@ class HomeView extends Component {
     }
 }
 
-export default HomeView;
+const mapStateToProps = state => state;
+
+
+export default withRouter(connect(mapStateToProps, { setFeatured })(HomeView));
