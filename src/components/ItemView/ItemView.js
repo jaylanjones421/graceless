@@ -1,35 +1,73 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import {addToCart} from '../../ducks/cart'
-import './ItemView.css';
+import React, { Component } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { setCart, addToCart } from "../../ducks/cart";
+import "./ItemView.css";
 
 class ItemView extends Component {
-    constructor(props){
-        super(props);
-    }
-
-    render() {
-        console.log(this.props.inventory)
-        return (
-            <div className='itemViewContainer'>
-                <div className='itemImg'>
-                    <img src={this.props.inventory.viewItem.imgUrl?this.props.inventory.viewItem.imgUrl:''} alt=""/>
-                </div>
-                <div className='itemLeft'>
-                    <div className="fullDescription">
-                        <div className='itemTitle'>{this.props.inventory.viewItem.itemName?this.props.inventory.viewItem.itemName :'filler'}</div>
-                        <div className='itemDesc'>{this.props.inventory.viewItem.description?this.props.inventory.viewItem.description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim error praesentium, voluptate doloremque reprehenderit nulla soluta odio esse numquam ad obcaecati in! Eos, placeat impedit dignissimos fugiat modi cum aliquam! Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim error praesentium, voluptate doloremque reprehenderit nulla soluta odio esse numquam ad obcaecati in! Eos, placeat impedit dignissimos fugiat modi cum aliquam!'}</div>
-                        <div className='itemPrice'>{this.props.inventory.viewItem.price? `$${this.props.inventory.viewItem.price}`:'$49.99'}</div>
-                    </div>
-                    <button className='addToCart' onClick={()=>addToCart(this.props.inventory.viewItem)/* and add addToCart(item) function from cart recucer*/} >Add to Cart</button>
-                </div>
+  constructor(props) {
+    super(props);
+  }
+  handleAddToCart(props) {
+    alert(`You have added ${props.itemName} to the cart!`);
+    //session add to cart
+    axios.put("/api/cart/addtocart", { props });
+  }
+  addToCart() {
+    axios.post("/api/cart/addtocart").then();
+  }
+  render() {
+    console.log(this.props);
+    return (
+      <div className="itemViewContainer">
+        <div className="itemImg">
+          <img
+            src={
+              this.props.inventory.viewItem.imgUrl
+                ? this.props.inventory.viewItem.imgUrl
+                : ""
+            }
+            alt=""
+          />
+        </div>
+        <div className="itemLeft">
+          <div className="fullDescription">
+            <div className="itemTitle">
+              {this.props.inventory.viewItem.itemName
+                ? this.props.inventory.viewItem.itemName
+                : "filler"}
             </div>
-        );
-    }
+            <div className="itemSize">
+              {this.props.inventory.viewItem.size
+                ? `Size: ${this.props.inventory.viewItem.size}`
+                : "size"}
+            </div>
+            <div className="itemDesc">
+              {this.props.inventory.viewItem.description
+                ? this.props.inventory.viewItem.description
+                : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim error praesentium, voluptate doloremque reprehenderit nulla soluta odio esse numquam ad obcaecati in! Eos, placeat impedit dignissimos fugiat modi cum aliquam! Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim error praesentium, voluptate doloremque reprehenderit nulla soluta odio esse numquam ad obcaecati in! Eos, placeat impedit dignissimos fugiat modi cum aliquam!"}
+            </div>
+            <div className="itemPrice">
+              {this.props.inventory.viewItem.price
+                ? `$${this.props.inventory.viewItem.price}`
+                : "$49.99"}
+            </div>
+          </div>
+          <button
+            className="addToCart"
+            onClick={() => this.handleAddToCart(this.props.inventory.viewItem)}
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => state;
 
-
-export default withRouter(connect(mapStateToProps, {addToCart})(ItemView));
+export default withRouter(
+  connect(mapStateToProps, { setCart, addToCart })(ItemView)
+);

@@ -1,54 +1,54 @@
-.homeContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 190px;
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 190px;
 }
-.heroImg{
-    height: 700px;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    background-image: url("../../assets/flowers.jpg");
-    background-size:cover;
-    background-position: center;
+.heroImg {
+  height: 700px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-image: url("../../assets/flowers.jpg");
+  background-size: cover;
+  background-position: center;
 }
-.heroMain{
-    font-size: 7em;
-    font-family: serif;
-    margin-bottom:-20px;
+.heroMain {
+  font-size: 7em;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin-bottom: -20px;
 }
-.heroSub{
-    font-size: 2em;
-    font-family: monospace;
-    margin-top:0px;
+.heroSub {
+  font-size: 2em;
+  font-family: monospace;
+  margin-top: 0px;
 }
-.featuredHead{
-    height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4em;
-    font-family: serif;
-    color: #414141;   
+.featuredHead {
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4em;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: #414141;
 }
-.featuredContainer{
-    width: 75vw;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
+.featuredContainer {
+  width: 75vw;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
-.featuredCards{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid #414141;
-    padding: 40px;
-    flex-wrap: wrap;
-    
+.featuredCards {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #414141;
+  padding: 40px;
+  flex-wrap: wrap;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
 }

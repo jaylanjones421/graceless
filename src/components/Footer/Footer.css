@@ -1,18 +1,18 @@
-.footerContainer{
-    height: 60px;
-    width: 100%;
-    position: fixed;
-    bottom: 0px;
-    padding-right: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    color: white;
-    background-color: #414141
+.footerContainer {
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  padding-right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: white;
+  background-color: #414141;
 }
-.social{
-    margin-right: 20px;
+.social {
+  margin-right: 20px;
 }
-.socialContainer :hover{
-    color:rgba(255, 255, 255, 0.7);
+.socialContainer :hover {
+  color: #ccd3fd;
 }
