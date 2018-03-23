@@ -9,6 +9,7 @@ const strategy = require(`${__dirname}/strategy.js`);
 const { connectionString } = require(`${__dirname}/config.js`);
 const ic = require("./controllers/inventoryController/inventoryController");
 const cc = require("./controllers/cartController/cartController");
+const oc = require("./controllers/orderController/orderController");
 
 const app = express();
 
@@ -87,7 +88,13 @@ app.delete("/api/cart/deletecart", cc.deleteCart);
 //create order!
 app.post("/api/cart/createorder", cc.createOrder);
 
-/////////////////////////////////////////////////////////////////////////
+//order endpoints/////////////////////////////////////////////////////////
+//get all orders
+app.get("/api/orders", oc.getOrders);
+//get distinct nums
+app.get("/api/orders/orderids", oc.getOrderNums);
+//get order by id
+app.get("/api/orders/:id", oc.getOrder);
 
 const port = 3001;
 app.listen(port, () => {

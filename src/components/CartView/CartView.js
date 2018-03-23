@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import OrderCard from "../OrderCard/OrderCard";
+import CartCard from "../CartCard/CartCard";
 import axios from "axios";
 
 import "./CartView.css";
@@ -44,7 +44,7 @@ class CartView extends Component {
     console.log(this.state);
     let cartItems = this.state.cart.map((item, i) => (
       <div key={i}>
-        <OrderCard
+        <CartCard
           itemName={item.itemName}
           type={item.type}
           price={item.price}
