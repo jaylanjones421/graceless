@@ -5,6 +5,7 @@ class OrderDetails extends Component {
     super(props);
   }
   render() {
+    console.log(this.props);
     const oDCStyle = {
       height: "800px",
       width: "400px",
@@ -15,6 +16,11 @@ class OrderDetails extends Component {
     const OrderDetailsStyle = {
       fontSize: "1.5em",
       fontWeight: "bold"
+    };
+    const sendButtonStyle = {
+      fontSize: "1.5em",
+      fontWeight: "bold",
+      cursor: "pointer"
     };
 
     let detailCards = this.props.order.map((item, i) => (
@@ -30,6 +36,27 @@ class OrderDetails extends Component {
         />
       </div>
     ));
+    let sendButton = (
+      <div>
+        <button
+          onClick={() => this.props.action(this.props.orderId)}
+          style={sendButtonStyle}
+        >
+          SEND
+        </button>
+      </div>
+    );
+    let orderDeleteButton = (
+      <div>
+        <button
+          onClick={() => this.props.cancelOrder(this.props.orderId)}
+          style={sendButtonStyle}
+        >
+          CANCEL ORDER
+        </button>
+      </div>
+    );
+
     return (
       <div className="orderDetailsContainer" style={oDCStyle}>
         <div className="orderNum" style={OrderDetailsStyle}>
@@ -38,6 +65,8 @@ class OrderDetails extends Component {
         {detailCards}
         <div style={OrderDetailsStyle}>{`Total: $${this.props.total ||
           120}`}</div>
+        {this.props.status === "Sent" ? <div /> : orderDeleteButton}
+        {this.props.status === "Sent" ? <div /> : sendButton}
       </div>
     );
   }

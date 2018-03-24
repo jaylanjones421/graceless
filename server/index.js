@@ -97,23 +97,31 @@ app.delete("/api/cart/deletecart", cc.deleteCart);
 app.post("/api/cart/createorder", cc.createOrder);
 //create twilio order confirmation
 app.post("/api/twilio/orderconfirm", (req, res) => {
-  twilio.messages
+  console.log(req.body);
+  /* twilio.messages
     .create({
       to: `+16147694103`,
       from: PHONE_NUMBER,
-      body: `Hi Guest, this is a Graceless notification.Thank you for your order! Please login to checkout more details!`
+      body: `Hi Guest, this is a Graceless notification.Thank you for your order! We have recieved your order  with ${req
+        .body.length} items and will work to get it to you ASAP!`
     })
     .then(message => console.log(message.sid))
-    .catch(err => console.log(err));
+    .catch(err => console.log(err)); */
 });
 
 //order endpoints/////////////////////////////////////////////////////////
 //get all orders
 app.get("/api/orders", oc.getOrders);
+//get past orders
+app.get("/api/orders/pastorders", oc.getSentOrders);
 //get distinct nums
 app.get("/api/orders/orderids", oc.getOrderNums);
 //get order by id
 app.get("/api/orders/:id", oc.getOrder);
+//change order status
+app.put(`/api/orders/update/:id`, oc.sendOrder);
+//cancel order
+app.delete(`/api/orders/delete/:id`, oc.cancelOrder);
 
 const port = 3001;
 app.listen(port, () => {

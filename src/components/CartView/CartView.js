@@ -41,9 +41,9 @@ class CartView extends Component {
       console.log(`CART CLEARED${res.data}`);
     });
   }
-  createOrder() {
+  createOrder(cartlength) {
     axios.post("/api/cart/createorder", this.state.cart);
-    axios.post("/api/twilio/orderconfirm");
+    axios.post("/api/twilio/orderconfirm", cartlength);
   }
   render() {
     console.log(this.state);
@@ -85,7 +85,8 @@ class CartView extends Component {
                 .state
                 .total} will be shipped in 2 business days. Thank you for supporting Graceless!`
             );
-            this.createOrder();
+            let cartLength = this.state.cart.length;
+            this.createOrder(cartLength);
             this.deleteCart();
           }}
           className="checkOutButton"

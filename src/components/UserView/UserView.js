@@ -15,15 +15,21 @@ class UserView extends Component {
       currentOrder: null,
       currentTotal: null,
       currentNumOfItems: null,
-      displayName: "Guest"
+      displayName: "Admin"
     };
     this.changeCurrentOrder = this.changeCurrentOrder.bind(this);
+    this.changeOrderStatus = this.changeOrderStatus.bind(this);
+    this.cancelOrder = this.cancelOrder.bind(this);
   }
   componentDidMount() {
     axios.get("/api/orders").then(res => {
-      console.log(res.data);
       this.setState({
         allOrderDetails: res.data
+      });
+    });
+    axios.get("/api/orders/pastorders").then(res => {
+      this.setState({
+        pastOrders: res.data
       });
     });
     axios.get("/api/orders/orderids").then(res => {
@@ -55,6 +61,15 @@ class UserView extends Component {
   handleDisplayName(value) {
     this.setState({ displayName: value });
   }
+  changeOrderStatus(orderNum) {
+    axios.put(`/api/orders/update/${orderNum}`);
+  }
+  cancelOrder(orderNum) {
+    axios.delete(`/api/orders/delete/${orderNum}`);
+    this.setState({
+      currentOrder: null
+    });
+  }
   orderTotal = (item, arr) => {
     let total = 0;
     arr
@@ -70,7 +85,6 @@ class UserView extends Component {
     let items = arr.filter(x => x.orderID === item.orderID);
     return items.length;
   };
-
   render() {
     let userViewRightStyle = {
       display: "flex",
@@ -79,31 +93,30 @@ class UserView extends Component {
       justifyContent: "center",
       padding: "40px"
     };
-    console.log(this.state.currentOrder);
     let activeOrders = this.state.activeOrders.map((item, i) => (
       <div key={i}>
         <OrderCard
           orderId={item.orderID}
           items={this.numOfItems(item, this.state.allOrderDetails)}
           total={this.orderTotal(item, this.state.allOrderDetails)}
+          status="Processing"
           action={this.changeCurrentOrder}
+          cancelOrder={this.cancelOrder}
         />
       </div>
     ));
 
-    /*    let pastOrders = this.props.map((item, i) => (
+    let pastOrders = this.state.pastOrders.map((item, i) => (
       <div key={i}>
-        <OrderDetailsCard
-          itemName={item.itemName}
-          type={item.type}
-          price={item.price}
-          size={item.size}
-          imgUrl={item.imgUrl}
-          id={item.id}
-          description={item.description}
+        <OrderCard
+          orderId={item.orderID}
+          items={this.numOfItems(item, this.state.allOrderDetails)}
+          total={this.orderTotal(item, this.state.allOrderDetails)}
+          status={this.state.pastOrders[0].status}
+          action={this.changeCurrentOrder}
         />
       </div>
-    )); */
+    ));
     return (
       <div className="userViewContainer">
         <div className="lazyDiv" />
@@ -112,7 +125,7 @@ class UserView extends Component {
             <h2>
               Howdy,{" "}
               <span className="displayName" contentEditable="true">
-                {this.props.name || "Guest"}
+                {this.state.displayName || "Guest"}
               </span>!
             </h2>
           </div>
@@ -132,6 +145,7 @@ class UserView extends Component {
                   <h3>Past Orders</h3>
                   <div className="pastOrders">
                     {/* this is where i'll populate order cards */}
+                    {pastOrders}
                   </div>
                 </div>
               </div>
@@ -142,6 +156,9 @@ class UserView extends Component {
                   order={this.state.currentOrder}
                   orderId={this.state.currentOrder[0].orderID}
                   total={this.state.currentTotal}
+                  action={this.changeOrderStatus}
+                  status={this.state.currentOrder[0].status}
+                  cancelOrder={this.cancelOrder}
                 />
               )}
             </div>

@@ -1,0 +1,1 @@
+DELETE FROM orders WHERE "orderID" = $1
