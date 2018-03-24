@@ -1,8 +1,23 @@
 import React, { Component } from "react";
 import OrderDetailsCard from "../OrderDetailsCard/OrderDetailsCard";
 class OrderDetails extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
-    /*    let orderItems = this.props.map((item, i) => (
+    const oDCStyle = {
+      height: "800px",
+      width: "400px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center"
+    };
+    const OrderDetailsStyle = {
+      fontSize: "1.5em",
+      fontWeight: "bold"
+    };
+
+    let detailCards = this.props.order.map((item, i) => (
       <div key={i}>
         <OrderDetailsCard
           itemName={item.itemName}
@@ -14,12 +29,15 @@ class OrderDetails extends Component {
           description={item.description}
         />
       </div>
-    )); */
+    ));
     return (
-      <div className="orderDetailsContainer">
-        <div>{`Order: ${this.props.orderId || 1234567890}`} </div>
-        <OrderDetailsCard />
-        <div>{`Total: $${this.props.total || 120}`}</div>
+      <div className="orderDetailsContainer" style={oDCStyle}>
+        <div className="orderNum" style={OrderDetailsStyle}>
+          {`Order: ${this.props.orderId || 1234567890}`}{" "}
+        </div>
+        {detailCards}
+        <div style={OrderDetailsStyle}>{`Total: $${this.props.total ||
+          120}`}</div>
       </div>
     );
   }

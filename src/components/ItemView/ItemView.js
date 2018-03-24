@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+
 import { setCart, addToCart } from "../../ducks/cart";
 import "./ItemView.css";
 
@@ -9,18 +11,22 @@ class ItemView extends Component {
   constructor(props) {
     super(props);
   }
+  notify = str => toast(str);
+
   handleAddToCart(props) {
-    alert(`You have added ${props.itemName} to the cart!`);
+    this.notify(`You have added ${props.itemName} to the cart!`);
     //session add to cart
     axios.put("/api/cart/addtocart", { props });
   }
   addToCart() {
     axios.post("/api/cart/addtocart").then();
   }
+
   render() {
     console.log(this.props);
     return (
       <div className="itemViewContainer">
+        <ToastContainer autoClose={2000} />
         <div className="itemImg">
           <img
             src={

@@ -27,12 +27,16 @@ const createOrder = (req, res) => {
   const dbInstance = req.app.get("db");
   let orderNum = uuidv1();
   let insertItems = req.body.map(item => item.id);
+  let response = {
+    order: orderNum,
+    items: insertItems.length
+  };
   function insertLines() {
     insertItems.forEach(item => {
       dbInstance.createOrderLine(orderNum, item);
     });
-    orderNum++;
   }
+  res.json(response);
   return insertLines();
 };
 module.exports = {

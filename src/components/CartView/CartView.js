@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CartCard from "../CartCard/CartCard";
+import Checkout from "../Checkout/Checkout";
 import axios from "axios";
 
 import "./CartView.css";
@@ -30,6 +31,7 @@ class CartView extends Component {
       });
     });
   }
+
   deleteCart() {
     axios.delete("/api/cart/deletecart").then(res => {
       this.setState({
@@ -39,7 +41,10 @@ class CartView extends Component {
       console.log(`CART CLEARED${res.data}`);
     });
   }
-
+  createOrder() {
+    axios.post("/api/cart/createorder", this.state.cart);
+    axios.post("/api/twilio/orderconfirm");
+  }
   render() {
     console.log(this.state);
     let cartItems = this.state.cart.map((item, i) => (
@@ -80,8 +85,8 @@ class CartView extends Component {
                 .state
                 .total} will be shipped in 2 business days. Thank you for supporting Graceless!`
             );
+            this.createOrder();
             this.deleteCart();
-            axios.post("/api/cart/createorder", this.state.cart);
           }}
           className="checkOutButton"
         >

@@ -1,5 +1,6 @@
 .userViewContainer {
   width: 100vw;
+  height: 200px;
   padding: 20px 170px;
 }
 .orderWrapper {
@@ -8,10 +9,11 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
+/* HI jaylan */
 .userOrderDiv {
   height: 300px;
   width: 600px;
-  padding: 0px 20px;
+  padding: 0px 20px 10px;
   margin-bottom: 30px;
   border: 3px solid black;
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
@@ -21,6 +23,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   flex-wrap: wrap;
+  overflow-y: scroll;
 }
 h3 {
   font-size: 2em;
@@ -40,7 +43,7 @@ h3 {
 .userViewRight {
   height: 637px;
   width: 600px;
-  margin: 0px 18px 30px 18px;
+  margin: 0px 18px 60px 18px;
   box-sizing: border-box;
 
   border: 3px solid black;

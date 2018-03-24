@@ -3,6 +3,7 @@ import axios from "axios";
 import "./UserVIew.css";
 import OrderCard from "../OrderCard/OrderCard.js";
 import OrderDetailsCard from "../OrderDetailsCard/OrderDetailsCard";
+import OrderDetails from "../OrderDetails/OrderDetails";
 
 class UserView extends Component {
   constructor(props) {
@@ -12,6 +13,8 @@ class UserView extends Component {
       activeOrders: [],
       pastOrders: [],
       currentOrder: null,
+      currentTotal: null,
+      currentNumOfItems: null,
       displayName: "Guest"
     };
     this.changeCurrentOrder = this.changeCurrentOrder.bind(this);
@@ -35,11 +38,18 @@ class UserView extends Component {
       });
     });
   }
-  changeCurrentOrder(id) {
-    axios.get(`/api/orders/${id}`).then(res => {
+  changeCurrentOrder(item) {
+    axios.get(`/api/orders/${item.orderId}`).then(res => {
       this.setState({
-        currentOrder: res.data
+        currentOrder: res.data,
+        currentTotal: item.total,
+        currentNumOfItems: item.items
       });
+    });
+  }
+  exitCurrentOrder() {
+    this.setState({
+      currentOrder: null
     });
   }
   handleDisplayName(value) {
@@ -62,6 +72,13 @@ class UserView extends Component {
   };
 
   render() {
+    let userViewRightStyle = {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "40px"
+    };
     console.log(this.state.currentOrder);
     let activeOrders = this.state.activeOrders.map((item, i) => (
       <div key={i}>
@@ -119,7 +136,15 @@ class UserView extends Component {
                 </div>
               </div>
             </div>
-            <div className="userViewRight" />
+            <div className="userViewRight" style={userViewRightStyle}>
+              {this.state.currentOrder && (
+                <OrderDetails
+                  order={this.state.currentOrder}
+                  orderId={this.state.currentOrder[0].orderID}
+                  total={this.state.currentTotal}
+                />
+              )}
+            </div>
           </div>
         </div>
         <div className="lazyDiv" />

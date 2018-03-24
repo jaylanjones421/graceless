@@ -5,8 +5,16 @@ const session = require("express-session");
 const passport = require("passport");
 const massive = require("massive");
 const strategy = require(`${__dirname}/strategy.js`);
+const Twilio = require("twilio");
 
-const { connectionString } = require(`${__dirname}/config.js`);
+const {
+  connectionString,
+  TWILIO_AUTH_TOKEN,
+  TWILIO_ACCOUNT_SID,
+  PHONE_NUMBER
+} = require(`${__dirname}/config.js`);
+
+const twilio = new Twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 const ic = require("./controllers/inventoryController/inventoryController");
 const cc = require("./controllers/cartController/cartController");
 const oc = require("./controllers/orderController/orderController");
@@ -87,6 +95,17 @@ app.put("/api/cart/removefromcart/:id", cc.removeFromCart);
 app.delete("/api/cart/deletecart", cc.deleteCart);
 //create order!
 app.post("/api/cart/createorder", cc.createOrder);
+//create twilio order confirmation
+app.post("/api/twilio/orderconfirm", (req, res) => {
+  twilio.messages
+    .create({
+      to: `+16147694103`,
+      from: PHONE_NUMBER,
+      body: `Hi Guest, this is a Graceless notification.Thank you for your order! Please login to checkout more details!`
+    })
+    .then(message => console.log(message.sid))
+    .catch(err => console.log(err));
+});
 
 //order endpoints/////////////////////////////////////////////////////////
 //get all orders

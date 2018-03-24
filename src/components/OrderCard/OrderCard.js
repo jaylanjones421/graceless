@@ -6,9 +6,8 @@ class OrderCard extends Component {
     return (
       <div className="orderCardContainer">
         <div className="orderCardTop">
-          <h4
-            onClick={() => this.props.action(this.props.orderId)}
-          >{`ORDER: ${this.props.orderId || 1234567890}`}</h4>
+          <h4 onClick={() => this.props.action(this.props)}>{`ORDER: ${this
+            .props.orderId || 1234567890}`}</h4>
         </div>
         <div className="orderCardBottom">
           <div>{`Items: ${this.props.items || 4}`}</div>
