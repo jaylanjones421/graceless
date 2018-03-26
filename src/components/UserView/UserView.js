@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./UserVIew.css";
+import { ToastContainer, toast } from "react-toastify";
+
 import OrderCard from "../OrderCard/OrderCard.js";
 import OrderDetailsCard from "../OrderDetailsCard/OrderDetailsCard";
 import OrderDetails from "../OrderDetails/OrderDetails";
@@ -43,6 +45,9 @@ class UserView extends Component {
       });
     }); */
   }
+  notify = str => toast.success(str);
+  bummer = str => toast.warn(str);
+
   changeCurrentOrder(item) {
     axios.get(`/api/orders/${item.orderId}`).then(res => {
       this.setState({
@@ -61,9 +66,12 @@ class UserView extends Component {
     this.setState({ displayName: value });
   }
   changeOrderStatus(orderNum) {
+    this.notify(`You have sent order ${orderNum}!`);
     axios.put(`/api/orders/update/${orderNum}`);
   }
   cancelOrder(orderNum) {
+    this.bummer(`You have canceled order ${orderNum}!`);
+
     axios.delete(`/api/orders/delete/${orderNum}`);
     this.setState({
       currentOrder: null
@@ -98,7 +106,7 @@ class UserView extends Component {
           orderId={item.orderID}
           items={this.numOfItems(item, this.state.allOrderDetails)}
           total={this.orderTotal(item, this.state.allOrderDetails)}
-          status="Processing"
+          status={this.state.activeOrders[0].status}
           action={this.changeCurrentOrder}
           cancelOrder={this.cancelOrder}
         />
@@ -119,6 +127,7 @@ class UserView extends Component {
     return (
       <div className="userViewContainer">
         <div className="lazyDiv" />
+        <ToastContainer autoClose={2000} />
         <div className="orderWrapper">
           <div className="salutations">
             <h2>
