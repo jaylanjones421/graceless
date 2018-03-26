@@ -1,26 +1,26 @@
-.shopContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between
+.shopContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
-.lazyDiv{
-    height: 75px;
+.lazyDiv {
+  height: 75px;
 }
-.filterContainer{
-    width: 100vw;
-    padding: auto;
-    display: flex;
-    justify-content: flex-end
+.filterContainer {
+  width: 100vw;
+  padding: auto;
+  display: flex;
+  justify-content: center;
 }
-.filterbb{
-    background-color:rgba(255, 255, 255, 0.45);
-    font-size:.9em;
+.filterbb {
+  background-color: rgba(255, 255, 255, 0.45);
+  font-size: 0.9em;
 }
-.shopItems{
-    width: 75vw;
-    display: flex ;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+.shopItems {
+  width: 75vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }

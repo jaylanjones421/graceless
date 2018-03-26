@@ -12,7 +12,6 @@ class HomeView extends Component {
     axios
       .get("/api/inventory")
       .then(res => {
-        console.log(res.data);
         this.props.setFeatured(res.data);
       })
       .catch(console.log);
@@ -21,7 +20,6 @@ class HomeView extends Component {
   }
 
   render() {
-    console.log(this.props);
     let featuredItems = this.props.inventory.featured.map((item, i) => (
       <div key={i}>
         <ItemCard

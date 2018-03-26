@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: space-between;
   margin: 10px;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
 }
 .removeFromCart {
   border: 1px solid grey;

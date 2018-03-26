@@ -6,6 +6,12 @@ const passport = require("passport");
 const massive = require("massive");
 const strategy = require(`${__dirname}/strategy.js`);
 const Twilio = require("twilio");
+const SERVER_CONFIGS = require("./constants/server");
+const { STRIPE_SECRET_KEY } = require("./constants/stripe");
+const stripe = require("stripe")("sk_test_eQQedpebWF61sYTbDJlaQG4m");
+
+const configureServer = require("./server");
+const configureRoutes = require("./routes");
 
 const {
   connectionString,
@@ -20,6 +26,8 @@ const cc = require("./controllers/cartController/cartController");
 const oc = require("./controllers/orderController/orderController");
 
 const app = express();
+configureServer(app);
+configureRoutes(app);
 
 app.use(json());
 app.use(cors());
@@ -122,6 +130,16 @@ app.get("/api/orders/:id", oc.getOrder);
 app.put(`/api/orders/update/:id`, oc.sendOrder);
 //cancel order
 app.delete(`/api/orders/delete/:id`, oc.cancelOrder);
+app.post("/api/checkout", (req, res, next) => {
+  stripe.charges.create(req.body, (stripeErr, stripeRes) => {
+    console.log(stripeErr);
+    if (stripeErr) {
+      res.status(500).send({ error: stripeErr });
+    } else {
+      res.status(200).send({ success: stripeRes });
+    }
+  });
+});
 
 const port = 3001;
 app.listen(port, () => {

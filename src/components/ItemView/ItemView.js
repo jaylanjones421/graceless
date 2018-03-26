@@ -26,7 +26,7 @@ class ItemView extends Component {
     console.log(this.props);
     return (
       <div className="itemViewContainer">
-        <ToastContainer autoClose={2000} />
+        <ToastContainer autoClose={1000} />
         <div className="itemImg">
           <img
             src={

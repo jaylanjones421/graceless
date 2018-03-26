@@ -44,9 +44,9 @@ class CartView extends Component {
   createOrder(cartlength) {
     axios.post("/api/cart/createorder", this.state.cart);
     axios.post("/api/twilio/orderconfirm", cartlength);
+    this.deleteCart();
   }
   render() {
-    console.log(this.state);
     let cartItems = this.state.cart.map((item, i) => (
       <div key={i}>
         <CartCard
@@ -58,12 +58,24 @@ class CartView extends Component {
           id={item.id}
           description={item.description}
           action={this.removeFromCart.bind(this)}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
         />
       </div>
     ));
     let clearCart =
       this.state.cart.length > 0 ? (
-        <button onClick={() => this.deleteCart()} className="clearCart">
+        <button
+          onClick={() => this.deleteCart()}
+          className="clearCart"
+          style={{
+            cursor: "pointer",
+            margin: "15px"
+          }}
+        >
           Clear Cart
         </button>
       ) : (
@@ -75,8 +87,9 @@ class CartView extends Component {
       ) : (
         <div className="cartTotal" />
       );
+    let numOfItems = this.state.cart.length;
 
-    let checkOutButton =
+    /*     let checkOutButton =
       this.state.total > 0 ? (
         <button
           onClick={() => {
@@ -95,7 +108,7 @@ class CartView extends Component {
         </button>
       ) : (
         <div className="checkOutButton" />
-      );
+      ); */
     return (
       <div className="cartContainer">
         <div className="lazyDiv" />
@@ -104,14 +117,22 @@ class CartView extends Component {
           <div className="cartDetails">
             {/*this will have generated ordercards*/}
             {cartItems}
-            {}
           </div>
         </div>
         <div className="bottom">
           <div className="cartTotal">{cartTotal}</div>
           <div className="cartButtons">
             {clearCart}
-            {checkOutButton}
+            {/* {checkOutButton} */}
+            <div onClick={() => this.createOrder(this.numOfItems)}>
+              {this.state.cart.length > 0 && (
+                <Checkout
+                  name={"Graceless"}
+                  description={"Vintage Goods"}
+                  amount={this.state.total}
+                />
+              )}
+            </div>
           </div>
 
           <div className="thanks">

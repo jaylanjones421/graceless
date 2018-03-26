@@ -1,1 +1,3 @@
-SELECT * FROM products WHERE product_type=$1;
+SELECT *
+FROM graceless_inventory
+WHERE type=$1;

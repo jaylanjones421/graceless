@@ -10,7 +10,7 @@ module.exports = {
   getInventoryByType: (req, res) => {
     const dbInstance = req.app.get("db");
     dbInstance
-      .getInventoryByType(type)
+      .getInventoryByType(req.params.inventory_type)
       .then(product => res.status(200).json(product))
       .catch(err => console.log(err));
   }

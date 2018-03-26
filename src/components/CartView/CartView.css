@@ -4,22 +4,27 @@
   align-items: center;
 }
 .top {
-  height: 600px;
+  height: 490px;
   width: 75vw;
   display: flex;
   justify-content: center;
+  margin: 0px 0px 20px;
 }
 .cartDetails {
-  width: 50%;
+  width: 75vw;
+  height: 470px;
+  overflow-y: scroll;
+  border: 2px solid black;
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
 }
 .cartOverview {
-  width: 50%;
   height: 500px;
   background-color: rgba(0, 0, 0, 0.1);
 }
 .thanks {
   width: 70vw;
   display: flex;
+  margin: 10px;
 }
 .clearCart:hover .checkoutbutton:hover {
   cursor: pointer;

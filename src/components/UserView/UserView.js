@@ -33,16 +33,15 @@ class UserView extends Component {
       });
     });
     axios.get("/api/orders/orderids").then(res => {
-      console.log(res.data);
       this.setState({
         activeOrders: res.data
       });
     });
-    axios.get("/api/user").then(res => {
+    /*  axios.get("/api/user").then(res => {
       this.setState({
         displayName: res.data.name
       });
-    });
+    }); */
   }
   changeCurrentOrder(item) {
     axios.get(`/api/orders/${item.orderId}`).then(res => {
@@ -124,7 +123,7 @@ class UserView extends Component {
           <div className="salutations">
             <h2>
               Howdy,{" "}
-              <span className="displayName" contentEditable="true">
+              <span className="displayName">
                 {this.state.displayName || "Guest"}
               </span>!
             </h2>

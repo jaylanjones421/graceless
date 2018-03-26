@@ -15,18 +15,10 @@ class CartCard extends Component {
           <img src={rose} alt="" />
         </div>
         <div className="cartDescription">
-          <div className="cartItemName">
-            {this.props.itemName ? this.props.itemName : "Something Good"}
-          </div>
-          <div className="cartItemDesc">
-            {this.props.size
-              ? `Size: ${this.props.size}`
-              : "here's what this thing is"}
-          </div>
+          <div className="cartItemName">{this.props.itemName}</div>
+          <div className="cartItemDesc">{this.props.size}</div>
         </div>
-        <div className="cartItemPrice">
-          {this.props.price ? `$${this.props.price}` : "$00"}
-        </div>
+        <div className="cartItemPrice">{`$${this.props.price}`}</div>
         <button
           onClick={() => this.props.action(this.props)}
           className="removeFromCart"

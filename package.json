@@ -21,6 +21,7 @@
     "react-toastify": "^3.4.3",
     "redux": "^3.7.2",
     "redux-promise-middleware": "^5.0.0",
+    "stripe": "^5.6.1",
     "twilio": "^3.14.0",
     "uuid": "^3.2.1"
   },
