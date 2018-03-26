@@ -12,7 +12,6 @@ const stripe = require("stripe")("sk_test_eQQedpebWF61sYTbDJlaQG4m");
 
 const configureServer = require("./server");
 const configureRoutes = require("./routes");
-app.use(express.static(`${__dirname}/../build`));
 const {
   connectionString,
   TWILIO_AUTH_TOKEN,
@@ -28,6 +27,7 @@ const oc = require("./controllers/orderController/orderController");
 const app = express();
 configureServer(app);
 configureRoutes(app);
+app.use(express.static(`${__dirname}/../build`));
 
 app.use(json());
 app.use(cors());
