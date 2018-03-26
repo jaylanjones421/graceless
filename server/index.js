@@ -12,7 +12,7 @@ const stripe = require("stripe")("sk_test_eQQedpebWF61sYTbDJlaQG4m");
 
 const configureServer = require("./server");
 const configureRoutes = require("./routes");
-
+app.use(express.static(`${__dirname}/../build`));
 const {
   connectionString,
   TWILIO_AUTH_TOKEN,
@@ -139,6 +139,11 @@ app.post("/api/checkout", (req, res, next) => {
       res.status(200).send({ success: stripeRes });
     }
   });
+});
+
+const path = require("path");
+app.get("*", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "/../build/index.html"));
 });
 
 const port = 3001;
