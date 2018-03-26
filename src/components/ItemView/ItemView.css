@@ -1,43 +1,42 @@
-.itemViewContainer{
-    
-    width: 50vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 100px;
-    display: flex;
+.itemViewContainer {
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 100px;
+  display: flex;
 }
-.itemImg{
-    height: 800px;
-    width: 500px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    box-sizing: border-box;
-    overflow: hidden;
+.itemImg {
+  height: 800px;
+  width: 500px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-.itemImg >img{
-    max-width: 400px;
+.itemImg > img {
+  max-width: 400px;
 }
-.itemLeft{
-    width: 400px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.itemLeft {
+  width: 400px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.fullDescription{
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+.fullDescription {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
 }
-.itemTitle{
-font-size: 3em;
-font-family: serif
+.itemTitle {
+  font-size: 3em;
+  font-family: serif;
 }
-.itemDesc{
-    width: 200px;
-    margin-top: 20px;
+.itemDesc {
+  width: 200px;
+  margin-top: 20px;
 }
