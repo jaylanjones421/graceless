@@ -1,6 +1,3 @@
-const STRIPE_PUBLISHABLE =
-  process.env.NODE_ENV === "production"
-    ? "pk_live_MY_PUBLISHABLE_KEY"
-    : "pk_test_akWLVy3j5Fzov1pKMYkvE4em";
+const STRIPE_PUBLISHABLE = "pk_test_akWLVy3j5Fzov1pKMYkvE4em";
 
 export default STRIPE_PUBLISHABLE;
